@@ -3,13 +3,16 @@ const input = document.querySelector('.name');
 const btn = document.querySelector('.btn');
 const car = Car();
 const listCar = document.querySelector('.list-car');
-console.log(listCar)
+
+
 function Car() {
     const car = [];
     const cars = {
-        add(e) {
-            car.push(e);
-            this.view();
+        add(item) {
+            if(item != '') {
+                car.push(item);
+                this.view();
+            }
         },
         remove(index){
             console.log('xóa sản phẩm')
@@ -18,11 +21,20 @@ function Car() {
             console.log('sửa sản phẩm')
         },
         view() {
-            var html = car.map(function(item) {
-                        return `<li>${item}</li>`
+            var html = car.map(function(item, index) {
+                        return `<li class='car-item' data-index='${index}'> <span>${item}</span> <span>x</span> </li>`
                        })
             html = html.join('');
             listCar.innerHTML = html;
+            const carItem = document.querySelectorAll('.car-item');
+            carItem.forEach(function(item,index) {
+                item.onclick = function(e) {
+                    if(e.target.textContent == 'x') {
+                        car.splice(index,1);
+                        cars.view();
+                    }
+                }
+            })
         }
     }
     return cars;
@@ -34,5 +46,7 @@ btn.onclick = function() {
     input.value = '';
     input.focus;
 }
+
+
 car.view()
 
