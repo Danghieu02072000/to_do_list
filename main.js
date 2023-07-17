@@ -1,11 +1,12 @@
 
-const input = document.querySelector('.name');
-const btn = document.querySelector('.btn');
+const input = document.querySelector('.toDoList__input');
+const btn = document.querySelector('.toDoList__btn');
 const car = Car();
-const listCar = document.querySelector('.list-car');
+const listCar = document.querySelector('.toDoList__list');
 
 
 function Car() {
+    isDone = false;
     const car = [];
     const cars = {
         add(item) {
@@ -22,16 +23,27 @@ function Car() {
         },
         view() {
             var html = car.map(function(item, index) {
-                        return `<li class='car-item' data-index='${index}'> <span>${item}</span> <span>x</span> </li>`
+                        return ` <li class="toDoList__item" data-index="${index}">
+                                    <span class="toDoList__text"> ${item}</span>
+                                    <span class="toDoList__delete"><i class="bi bi-trash-fill"></i></span>
+                                </li>`
                        })
             html = html.join('');
             listCar.innerHTML = html;
-            const carItem = document.querySelectorAll('.car-item');
+            const carItem = document.querySelectorAll('.toDoList__item');
             carItem.forEach(function(item,index) {
                 item.onclick = function(e) {
-                    if(e.target.textContent == 'x') {
+                    if(e.target.closest(".toDoList__delete")) {
                         car.splice(index,1);
                         cars.view();
+                    }
+                    if(isDone) {
+                        isDone = false;
+                        e.target.classList.remove('done');
+                    }
+                    else {
+                        isDone = true;
+                        e.target.classList.add('done');
                     }
                 }
             })

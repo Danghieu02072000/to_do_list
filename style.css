@@ -52,6 +52,11 @@ body {
 }
 .toDoList__delete i {
     color: #888484;
+    opacity: 0;
+    transition: 0.3s ease;
+}
+.toDoList__item:hover .toDoList__delete i {
+    opacity: 1;
 }
 .toDoList__item + .toDoList__item {
     border-top: 1px solid #d7d1d1;
@@ -61,4 +66,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; 
+}
+.toDoList__item.done {
+    
 }
