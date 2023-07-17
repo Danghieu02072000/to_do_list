@@ -49,6 +49,7 @@ body {
     justify-content: space-between;
     padding: 10px;
     gap: 10px;
+    cursor: pointer;
 }
 .toDoList__delete i {
     color: #888484;
@@ -66,7 +67,10 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; 
+    transition: 0.3s ease;
 }
-.toDoList__item.done {
-    
+.toDoList__item.done .toDoList__text{
+    text-decoration: line-through;
+    color: #888888;
+    font-style: italic;
 }

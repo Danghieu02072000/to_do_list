@@ -39,11 +39,11 @@ function Car() {
                     }
                     if(isDone) {
                         isDone = false;
-                        e.target.classList.remove('done');
+                        e.target.closest(".toDoList__item").classList.remove('done');
                     }
                     else {
                         isDone = true;
-                        e.target.classList.add('done');
+                        e.target.closest(".toDoList__item").classList.add('done');
                     }
                 }
             })
