@@ -15,12 +15,6 @@ function Car() {
                 this.view();
             }
         },
-        remove(index){
-            console.log('xóa sản phẩm')
-        },
-        edit(index, car){
-            console.log('sửa sản phẩm')
-        },
         view() {
             var html = car.map(function(item, index) {
                         return ` <li class="toDoList__item" data-index="${index}">
@@ -47,7 +41,22 @@ function Car() {
                     }
                 }
             })
+            const localStorage = []
+            carItem.forEach(function(item){
+                if(item.getAttribute('class') == 'done') {
+                    isDone = true;
+                }
+                else {
+                    isDone = false;
+                }
+            localStorage.push({
+                text : `${item.innerText}`,
+                status: `${isDone}`
+            })
+            })
+            console.log(localStorage)
         }
+    
     }
     return cars;
 }
